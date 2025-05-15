@@ -96,7 +96,10 @@ class Application:
         self.error_handling.pack()
 
         def items_selected(event):
-            self.selected_index = self.listbox_tasks.curselection()[0]
+            try:
+                self.selected_index = self.listbox_tasks.curselection()[0]
+            except IndexError:
+                pass
             self.item_title.delete(0, tk.END)
             self.item_title.insert(0, f'{self.task_list[self.selected_index]}')
 
